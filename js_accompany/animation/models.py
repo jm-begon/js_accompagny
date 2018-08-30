@@ -29,7 +29,7 @@ class Training(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=255)
     fields = models.ManyToManyField(Field)
-    advices = models.CharField(max_length=1024, blank=True)
+    advices = models.TextField(max_length=1024, blank=True)
     name_fr = 'Compétences'
     linkable_name = 'competences'
 
