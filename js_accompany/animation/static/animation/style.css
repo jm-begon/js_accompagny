@@ -1,0 +1,32 @@
+.raw {
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.badge-Bien-être {
+    background-color: red;
+    color: white;
+}
+.badge-Animation {
+    background-color: coral;
+    color: white;
+}
+
+.badge-Evalue {
+    background-color: gold;
+    color: white;
+}
+
+.badge-Engagement {
+    background-color: limegreen;
+    color: white;
+}
+
+.badge-Autre {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.badge-Amusement {
+    background-color: mediumvioletred;
+    color: white;
+}

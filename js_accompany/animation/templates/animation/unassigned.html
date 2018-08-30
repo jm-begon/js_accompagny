@@ -1,0 +1,62 @@
+{% extends 'animation/base.html' %}
+{% load app_filters %}
+
+{% block content %}
+
+     <div class="jumbotron">
+        <h1 class="display-4">TODOs du plan de formation J&S Liège</h1>
+        <p class="lead">Vas-y, fais des trucs</p>
+        <hr/>
+        <p><a class="btn btn-primary btn-lg" href="#start_here" role="button">Let's go</a></p>
+    </div>
+
+    <div id="start_here"></div>
+    {% if missings %}
+        {% if missings.n_missings == 0 %}
+            <div class="alert alert-success" role="alert">
+                Il n'y a pas de TODO.
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Il y a <em>{{ missings.n_missings }}</em> TODO(s) à traiter
+            </div>
+        {% endif %}
+
+        {% for missing in missings.list %}
+
+            {% if display_empty or missing.list|length > 0 %}
+
+                <div class="card" id="card_{{ missing.id }}">
+                    <div class="card-header" id="card_header_{{ missing.id }}">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#card_collapsable_{{ missing.id }}" aria-expanded="false" aria-controls="card_{{ missing.id }}">
+                            <span class="icon-list"> </span>{{ missing.heading }}
+                        </button>
+                        {% if  missing.list|length == 0%}
+                            <span class="badge badge-success float-right">0</span>
+                        {% else %}
+                            <span class="badge badge-danger float-right">{{ missing.list|length }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="collapse" id="card_collapsable_{{ missing.id }}" aria-label="card_collapsable{{ missing.id }}">
+                        <div class="card-body">
+                            <ul>
+                                {% for elem in missing.list %}
+                                    {# <li><a href="{% url 'animation:' missing.address %}">{{ elem.name }}</a></li> #}
+                                    <li><a href="{{ missing.address }}#{{ elem|id_str }}">{{ elem.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Did not recieve info.
+        </div>
+    {% endif %}
+
+{% endblock %}
