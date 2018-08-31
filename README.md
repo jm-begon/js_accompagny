@@ -3,10 +3,11 @@ A platform to think the accompanying of animators at J&amp;S Liège
 
 
 ## Setup dev environment
-1. Install Django 2.1
+1. Install Django and its dependencies (pip the requirements)
 2. Do the migrations
-    1. Create the dabatase `python manage.py migrate`
-    2. Prepare migrations `python manage.py makemigrations animation`
-    3. Make data-model migrations `python manage.py migrate`
-    4. Make data migrations `./manage.py loaddata migrations/fixture.json`
+    1. Create the dabatase `./manage.py migrate`
+    2. Prepare migrations `./manage.py makemigrations animation`
+    3. Prepare for reversion `./manage.py createinitialrevision`
+    4. Make data-model migrations `./manage.py migrate`
+    5. Make data migrations `./manage.py loaddata migrations/fixture.json`
       
