@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'animation.apps.AnimationConfig',
+    'reversion',
+    'reversion_compare',
 ]
+
+ADD_REVERSION_ADMIN = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

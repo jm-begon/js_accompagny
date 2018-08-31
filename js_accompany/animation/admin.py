@@ -2,10 +2,12 @@ from django.contrib import admin
 from django.db import models as django_models
 from django.forms import TextInput, Textarea
 
+from reversion_compare.admin import CompareVersionAdmin
+
 from .models import Field, Skill, Module, Criterion, Training
 
 
-class LongTextAdmin(admin.ModelAdmin):
+class LongTextAdmin(CompareVersionAdmin, admin.ModelAdmin):
     formfield_overrides = {
         django_models.CharField: {'widget': TextInput(attrs={'size': '150'})},
         django_models.TextField: {'widget': Textarea(attrs={'rows': 5,
