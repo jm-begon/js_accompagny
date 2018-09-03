@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load issue_filters %}
+{% block content %}
+
+    <h1>{{ object.title }}</h1>
+    <p>
+        <span class="badge badge-secondary">{{ object|state }}</span> -
+        Ouvert par <strong>{{ object|author_name }}</strong> le {{ object|pub_date }} -
+        {{ object|messages|length }} message(s)
+    </p>
+
+    {% for message in object|messages %}
+        {% include "./message_component.html" with message=message %}
+        <br/>
+    {% endfor %}
+
+
+
+
+
+{% endblock %}

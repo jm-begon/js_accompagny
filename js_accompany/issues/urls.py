@@ -5,7 +5,8 @@ from . import views
 
 app_name = 'issues'
 urlpatterns = [
-    path('', views.IssueListView.as_view(), name='index'),
-    path('list', views.IssueListView.as_view(), name='list'),
+    path('', views.IssueListView.as_view(), name='issue-list'),
+    path('<int:pk>/', views.IssueDetailView.as_view(), name='issue-detail'),
+
 
 ]

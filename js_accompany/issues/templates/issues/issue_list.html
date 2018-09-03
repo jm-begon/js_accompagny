@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
+{% load issue_filters %}
 {% block content %}
 
 
-    <h1 class="display-4">Discussions</h1>
-    <ul>
-    {% for issue in object_list %}
-        <li>{{ issue.title }}</li>
-    {% empty %}
-        <li>No articles yet.</li>
-    {% endfor %}
-    </ul>
+    <h1 class="display-4">Problématiques</h1>
+
+
+    <table id="issue-table" class="table table-striped">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">Date</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Sujet</th>
+                <th scope="col">Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in object_list %}
+                <a href="{% url "issue-detail" pk=issue.id %}"
+                <tr>
+                    <td>{{ issue|pub_date }}</td>
+                    <td>{{ issue|author_name }}</td>
+                    <td>{{ issue.title }}</td>
+                    <td>{{ issue|state }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
