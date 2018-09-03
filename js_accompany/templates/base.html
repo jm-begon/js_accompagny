@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="container">
-        <div id="top_navigation">
+        <div id="top_navigation" class="top-navigation">
             {% block top_navigation %}
                 <!--
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,18 +32,18 @@
                 -->
             {% endblock top_navigation %}
         </div>
-        <header>
+        <header id="header" class="header">
             {% block header %}{% endblock header %}
         </header>
 
-        <div id="sidebar">
+        <div id="sidebar" class="sidebar">
             {% block sidebar %}{% endblock sidebar %}
         </div>
 
-        <div id="content">
+        <div id="content" class="content">
             {% block content %}{% endblock content %}
         </div>
-        <footer>
+        <footer id="footer" class="footer">
             {% block footer %}{% endblock footer %}
         </footer>
     </div>

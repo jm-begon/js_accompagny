@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h1 class="display-4">Discussions</h1>
+    <ul>
+    {% for issue in object_list %}
+        <li>{{ issue.title }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

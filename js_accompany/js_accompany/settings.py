@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'animation.apps.AnimationConfig',
     'reversion',
     'reversion_compare',
+    'issues.apps.IssuesConfig',
 ]
 
 ADD_REVERSION_ADMIN = True
