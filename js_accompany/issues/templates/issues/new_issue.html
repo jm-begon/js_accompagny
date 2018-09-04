@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load issue_filters %}
+{% block content %}
+    <h1>Nouvelle problématique</h1>
+
+    {% if title_error %}
+        <div class="alert alert-danger" role="alert">
+            Il faut spécifier un titre
+        </div>
+    {% endif %}
+
+    <form action="{% url 'issues:save-issue' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="titleInput">Titre</label>
+            <input type="text" name="title" id="titleInput" maxlength="255" size="100" required aria-describedby="title" placeholder="Titre de la problématique">
+        </div>
+        <!-- quid of assignees ? -->
+
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+
+
+
+
+
+{% endblock %}

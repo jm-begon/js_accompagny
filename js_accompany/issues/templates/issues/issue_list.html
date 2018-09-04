@@ -6,9 +6,16 @@
     <h1 class="display-4">Problématiques</h1>
 
 
+    <div>
+        <a href="{% url 'issues:create-issue' %}" class="btn btn-success float-right icon-note" role="button" aria-pressed="true"></a>
+    </div>
+
+
+    <!-- Row are not clickable. There is a workaround using JQuery: https://stackoverflow.com/questions/17147821/how-to-make-a-whole-row-in-a-table-clickable-as-a-link -->
     <table id="issue-table" class="table table-striped">
         <thead>
             <tr class="table-primary">
+                <th scope="col">#</th>
                 <th scope="col">Date</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Sujet</th>
@@ -17,13 +24,20 @@
         </thead>
         <tbody>
             {% for issue in object_list %}
-                <a href="{% url "issue-detail" pk=issue.id %}"
                 <tr>
+                    <!--
+                    <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-arrow-right"></a></td>
+                    <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-bubbles"></a></td>
+                    <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-eye"></a></td>
+                    <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-magnifier"></a></td>
+                    -->
+                    <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-speech"></a></td>
                     <td>{{ issue|pub_date }}</td>
                     <td>{{ issue|author_name }}</td>
                     <td>{{ issue.title }}</td>
                     <td>{{ issue|state }}</td>
                 </tr>
+
             {% endfor %}
         </tbody>
     </table>
