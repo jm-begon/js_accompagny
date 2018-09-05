@@ -1,0 +1,49 @@
+.box {
+    width: 500px;
+    margin: 200px 0;
+}
+
+.cloud {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 80px;
+    float: left;
+}
+
+.cloud1 {
+    margin-right: -50px;
+}
+.cloud2 {
+    margin-top: -30px;
+}
+.cloud3 {
+    margin-top: -30px;
+    margin-left: -31px;
+}
+.cloud4 {
+    margin-top: -25px;
+    float: left;
+    margin-left: -32px;
+}
+.cloud5 {
+    margin-right: -48px;
+    margin-left: -32px;
+    margin-top: -30px;
+}
+.cloud6 {
+    margin-right: -20px;
+    margin-top: -35px;
+}
+.cloud7 {
+    margin-right: -20px;
+    margin-top: -57px;
+}
+.float {
+    position: absolute;
+    z-index: 2;
+}
+
+.form {
+    margin-left: 145px;
+}

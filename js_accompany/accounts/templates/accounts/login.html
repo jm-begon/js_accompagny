@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% block content %}
+    <div id="login-row" class="row justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+            <div class="box">
+                <div class="cloud cloud1 jsl-color1-bg"></div>
+                <div class="cloud cloud2 jsl-color1-bg"></div>
+                <div class="cloud cloud3 jsl-color1-bg"></div>
+                <div class="cloud cloud4 jsl-color1-bg"></div>
+                <div class="cloud cloud5 jsl-color1-bg"></div>
+                <div class="cloud cloud6 jsl-color1-bg"></div>
+                <div class="cloud cloud7 jsl-color1-bg"></div>
+                <div class="float">
+                    <form id="login-form" method="post"
+                          action="{% url 'accounts:login' %}" class="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username" class="text-white">Nom
+                                d'utilisateur:</label><br>
+                            <input type="text" name="username" id="id_username"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password" class="text-white">Mot de
+                                passe:</label><br>
+                            <input type="password" name="password" id="id_password"
+                                   class="form-control">
+                        </div>
+                        {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.errors }} Try again.
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <input type="submit" name="submit"
+                                   class="btn jsl-color2-bg" value="Connexion">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="next" value="{{ next }}"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

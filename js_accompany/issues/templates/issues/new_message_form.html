@@ -1,0 +1,16 @@
+<!--
+    Expecting `issue_id`: the id of the issue this message is related to
+    Possibly `error_message`
+-->
+{% if error_message %}
+    {% include 'error.html' with error_message=error_message %}
+{% endif %}
+
+<form action="{% url 'issues:add-message' issue_id %}" method="post">
+    {% csrf_token %}
+
+    {% include 'formatable_textarea.html' with textarea_name="message_content" %}
+
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+
+</form>

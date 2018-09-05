@@ -11,42 +11,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'animation/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'jsl.css' %}">
+
+    {% block head-static %}{% endblock %}
 
 
     <title>{% block title %}Plan de formation J&S Liège{% endblock title %}</title>
 </head>
 <body>
-    <div class="container">
-        <div id="top_navigation" class="top-navigation">
-            {% block top_navigation %}
-                <!--
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="navbar-nav float-right" id="top_navbar">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="axes">Plan de formation</a></li>
-                            <li class="nav-item"><a class="nav-link" href="todo">TODOs</a></li>
-                        </ul>
-                    </div>
-                </nav>
-                -->
-            {% endblock top_navigation %}
-        </div>
-        <header id="header" class="header">
-            {% block header %}{% endblock header %}
-        </header>
+    {% block body %}
+        <div class="container">
 
-        <div id="sidebar" class="sidebar">
-            {% block sidebar %}{% endblock sidebar %}
-        </div>
+            <div id="top_navigation" class="top-navigation">
+                {% block top_navigation %}
+                    {% include "./topnavbar.html" %}
+                {% endblock top_navigation %}
+            </div>
 
-        <div id="content" class="content">
-            {% block content %}{% endblock content %}
+            <header id="header" class="header">
+                {% block header %}{% endblock header %}
+            </header>
+
+            <div id="sidebar" class="sidebar">
+                {% block sidebar %}{% endblock sidebar %}
+            </div>
+
+            <div id="content" class="content">
+                {% block content %}{% endblock content %}
+            </div>
+            <footer id="footer" class="footer">
+                {% block footer %}{% endblock footer %}
+            </footer>
         </div>
-        <footer id="footer" class="footer">
-            {% block footer %}{% endblock footer %}
-        </footer>
-    </div>
+    {% endblock %}
 
 
 </body>

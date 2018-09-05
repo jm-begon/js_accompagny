@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head-static %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/login.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id="login-container" class="container">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link {{ is_signup|yesno:',active' }}" href="{% url 'accounts:login' %}">Connexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ is_signup|yesno:'active,' }}" href="{% url 'accounts:signup' %}">Enregistrement</a>
+            </li>
+        </ul>
+
+        {% block content %}{% endblock %}
+
+
+{% endblock %}

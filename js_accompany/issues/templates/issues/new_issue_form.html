@@ -1,0 +1,22 @@
+<!--
+    Might expect `title_error` a boolean
+-->
+
+{% if title_error %}
+    {% include 'error.html' with error_message="Il faut spécifier un titre" %}
+{% endif %}
+
+<form action="{% url 'issues:save-issue' %}" method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <!-- <label for="titleInput">Titre</label> -->
+        <input type="text" name="title" id="titleInput" maxlength="255" size="100" required aria-describedby="title" placeholder="Titre de la problématique">
+    </div>
+    <!-- quid of assignees ? -->
+
+    {% include 'formatable_textarea.html' with textarea_name="message_content" %}
+
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+
+</form>
