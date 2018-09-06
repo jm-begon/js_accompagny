@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from .views import MyLogin, signup, serve_template
+from .views import MyLogin, signup, serve_template, settings
 
 
 app_name = 'accounts'
@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', signup, name='signup'),
     path('success_signup/', serve_template('accounts/success_signup.html'), name='success_signup'),
+    path('settings/', settings, name='settings'),
 ]
 

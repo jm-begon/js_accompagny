@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Settings</h1>
+
+    <h2>Compte</h2>
+    <!-- https://docs.djangoproject.com/fr/2.1/topics/auth/default/#using-the-views -->
+    <p>Coming soon (maybe not as soon as winter, though)</p>
+    <ul>
+        <li>Mettre à jour les informations</li>
+        <li>Changer de mot de passe</li>
+        <li>Remettre le mot de passe à zéro</li>
+    </ul>
+
+    <h2>Groupes</h2>
+    {% if user.is_staff %}
+        <span class="badge badge-secondary">staff</span>
+    {% endif %}
+    {% for group in user.groups.all %}
+        <span class="badge badge-secondary">{{ group }}</span>
+    {% endfor %}
+
+{% endblock %}

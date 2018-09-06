@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.template.context_processors import csrf
-from django.conf import settings
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 from .forms import MyRegistrationForm
@@ -46,3 +46,6 @@ def serve_template(template_name, context=None):
     return handle_request
 
 
+@login_required
+def settings(request):
+    return render(request, 'accounts/settings.html', {})
