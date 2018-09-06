@@ -32,10 +32,10 @@
                     <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-magnifier"></a></td>
                     -->
                     <td><a href="{% url 'issues:issue-detail' pk=issue.id %}" class="icon-speech"></a></td>
-                    <td>{{ issue|pub_date }}</td>
-                    <td>{{ issue|author_name }}</td>
+                    <td>{{ issue.date }}</td>
+                    <td>{{ issue.owner_name }}</td>
                     <td>{{ issue.title }}</td>
-                    <td>{{ issue|state }}</td>
+                    <td>{{ issue.state }}</td>
                 </tr>
 
             {% endfor %}

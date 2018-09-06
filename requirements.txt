@@ -2,3 +2,4 @@ django>=2.1
 django-reversion>=3.0.0
 django-reversion-compare>=0.8.4
 django-todo>=2.0.3
+django-model-utils>=3.1.2

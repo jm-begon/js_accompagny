@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.db import transaction
 
-from .models import Issue, IssueState, StateValue, IssueMessage
+from .models import Issue, MessagePosted
 
 
 class IssueListView(ListView):
@@ -18,7 +18,6 @@ class IssueListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['object_list'] = context['object_list'].orderby()
         context['now'] = timezone.now()
         return context
 
@@ -48,18 +47,16 @@ def save_issue(request):
         return render(request, "issues/new_issue.html",
                       {'title_error': True})
 
-    state = IssueState.objects.get(name=StateValue.opened)
+    Issue.new_issue(title=title, user=request.user,
+                    content=request.POST['message_content'])
 
-    issue = Issue.objects.create(title=title, state=state)
-    IssueMessage.objects.create(issue=issue, author=request.user,
-                                content=request.POST['message_content'])
     return HttpResponseRedirect(reverse('issues:issue-list'))
 
 
 @transaction.atomic
-@permission_required('issues.add_issuemessage', raise_exception=True)
-def add_message(request, issue_id):
-    issue = get_object_or_404(Issue, pk=issue_id)
+#@permission_required('issues.add_messageposted', raise_exception=True)
+def add_message(request, issue_pk):
+    issue = get_object_or_404(Issue, pk=issue_pk)
     try:
         content = request.POST['message_content']
         if content is None or len(content) == 0:
@@ -68,9 +65,9 @@ def add_message(request, issue_id):
         return render(request, "issues/issue_detail.html",
                       {'object': issue, 'error_message': str(err)})
 
-    IssueMessage.objects.create(issue=issue, author=request.user,
-                                content=content)
-    return HttpResponseRedirect(reverse('issues:issue-detail', args=(issue.id,)))
+    MessagePosted.new_message(request.user, issue=issue, content=content)
+
+    return HttpResponseRedirect(reverse('issues:issue-detail', args=(issue.pk,)))
 
 
 

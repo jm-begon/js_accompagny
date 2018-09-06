@@ -2,8 +2,8 @@
 <!-- expecting `message` variable -->
 <div class="card">
     <div class="card-header">
-        <strong>{{ message|author_name }}</strong>
-        <span class="float-right">{{ message|pub_date }}</span>
+        <strong>{{ message.owner_name }}</strong>
+        <span class="float-right">{{ message.date }}</span>
     </div>
     <div class="card-body">
         <pre>{{ message.content }}</pre>
