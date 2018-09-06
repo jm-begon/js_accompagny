@@ -1,5 +1,5 @@
 from django import template
-from ..models import Issue, IssueMessage, IssueState
+from ..models import Issue, IssueMessage, IssueState, StateValue
 
 register = template.Library()
 
@@ -34,6 +34,18 @@ def state(value):
         return value.get_name()
     elif isinstance(value, Issue):
         return value.get_state_name()
+    else:
+        raise ValueError('Can only extract state from {} or {}'
+                         ''.format(Issue.__class__.__name__,
+                                   IssueState.__class__.__name__))
+
+
+@register.filter
+def is_closed(value):
+    if isinstance(value, IssueState):
+        return value.is_closed()
+    elif isinstance(value, Issue):
+        return value.state.is_closed()
     else:
         raise ValueError('Can only extract state from {} or {}'
                          ''.format(Issue.__class__.__name__,

@@ -15,14 +15,16 @@
     {% endfor %}
 
 
-    <div class="card">
-        <div class="card-header">
-            Répondre:
+    {% if not object|is_closed %}
+        <div class="card mt-5">
+            <div class="card-header">
+                Répondre:
+            </div>
+            <div class="card-body">
+                {% include './new_message_form.html' with issue_id=object.id %}
+            </div>
         </div>
-        <div class="card-body">
-            {% include './new_message_form.html' with issue_id=object.id %}
-        </div>
-    </div>
+    {% endif %}
 
 
 

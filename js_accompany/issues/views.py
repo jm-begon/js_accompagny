@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.db import transaction
 
-from .models import Issue, IssueState, __STATES__, IssueMessage
+from .models import Issue, IssueState, StateValue, IssueMessage
 
 
 class IssueListView(ListView):
@@ -33,13 +33,13 @@ class IssueDetailView(DetailView):
         return context
 
 
-@permission_required('issues.add_issue')
+@permission_required('issues.add_issue', raise_exception=True)
 def create_issue(request):
     return render(request, 'issues/new_issue.html')
 
 
 @transaction.atomic
-@permission_required('issues.add_issue')
+@permission_required('issues.add_issue', raise_exception=True)
 def save_issue(request):
     # https://docs.djangoproject.com/fr/2.1/intro/tutorial04/
     try:
@@ -48,7 +48,7 @@ def save_issue(request):
         return render(request, "issues/new_issue.html",
                       {'title_error': True})
 
-    state = IssueState.objects.get(name=__STATES__[0])
+    state = IssueState.objects.get(name=StateValue.opened)
 
     issue = Issue.objects.create(title=title, state=state)
     IssueMessage.objects.create(issue=issue, author=request.user,
@@ -57,7 +57,7 @@ def save_issue(request):
 
 
 @transaction.atomic
-@permission_required('issues.add_issuemessage')
+@permission_required('issues.add_issuemessage', raise_exception=True)
 def add_message(request, issue_id):
     issue = get_object_or_404(Issue, pk=issue_id)
     try:

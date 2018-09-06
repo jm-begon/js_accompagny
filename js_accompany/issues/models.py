@@ -1,17 +1,26 @@
+from enum import Enum
+
 from django.db import models
 from django.contrib.auth.models import User
 
-__STATES__ = ['En cours', 'Close']
+
+class StateValue(Enum):
+    opened = 'En cours'
+    closed = 'Close'
 
 
 class IssueState(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, choices=[(tag, tag.value) for
+                                                    tag in StateValue])
 
     def get_name(self):
         name = self.name
         if name is None:
-            name = __STATES__[0]
+            name = StateValue.opened
         return name
+
+    def is_closed(self):
+        return self.name == StateValue.closed.value
 
     def __str__(self):
         return '[Etat] {}'.format(self.get_name())
@@ -70,4 +79,3 @@ class IssueMessage(models.Model):
         else:
             s = content[:max_size-3] + "..."
         return '[Message] {}...'.format(s)
-
