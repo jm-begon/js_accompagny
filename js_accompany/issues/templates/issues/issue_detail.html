@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load issue_filters %}
+{% block content %}
+
+    <h1>{{ issue.title }}</h1>
+    {% for action in issue|actions %}
+        {% include "./action_component.html" with action=action %}
+        <br/>
+    {% endfor %}
+
+
+    {% if not issue|is_closed %}
+        <div class="card mt-5">
+            <div class="card-header">
+                Répondre:
+            </div>
+            <div class="card-body">
+                {% include './new_message_form.html' with issue_pk=issue.id %}
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}

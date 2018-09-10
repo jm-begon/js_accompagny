@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+    <a class="navbar-brand" href="https://liege.jeunesseetsante.be/" title="Site J&S">J&S Liège</a>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link icon-home" href="{% url 'animation:index' %}" title="Plan de formation"></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'animation:todo' %}">TODOs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'issues:issue-list' %}">Problématiques</a></li>
+            </ul>
+
+            <div>
+                {% if user.is_authenticated %}
+                    <span class="navbar-text" title="Utilisateur">Bienvenu {{ user }}</span>
+                    <a href="{% url 'accounts:settings' %}" class="navbar-text icon-settings" title="Paramètres"></a>
+                    {% if user.is_staff %}
+                        <a href="/admin/" class="navbar-text icon-wrench" title="Zone administrateur"></a>
+                    {% endif %}
+                    <a href="{% url 'accounts:logout' %}" class="navbar-text icon-logout" title="Déconnexion"></a>
+                {% else %}
+                    <a class="navbar-text icon-login" title="Connexion" href="{% url 'accounts:login' %}"></a>
+                {% endif %}
+            </div>
+        </div>
+
+</nav>

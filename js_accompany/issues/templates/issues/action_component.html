@@ -1,0 +1,7 @@
+{% load issue_filters %}
+<!-- expecting `action` variable -->
+{% if action|is_action_instance:"StateChanged" %}
+    {% include "./state_component.html" with state=action %}
+{% elif action|is_action_instance:"MessagePosted" %}
+    {% include "./message_component.html" with message=action %}
+{% endif %}

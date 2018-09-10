@@ -7,3 +7,4 @@ for dev
 ## Going to prod.
  - `js_accompany.settings` holds a secret key and debug mode
  - Change database
+ - Use https

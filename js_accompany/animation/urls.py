@@ -12,6 +12,5 @@ urlpatterns = [
     path(models.Module.linkable_name, views.modules, name=models.Training.linkable_name),
     path(models.Skill.linkable_name, views.skills, name=models.Skill.linkable_name),
     path(models.Criterion.linkable_name, views.criteria, name=models.Criterion.linkable_name),
-    path('todo', views.unassigned, name='todo')
-
+    path('todo', views.unassigned, name='todo'),
 ]

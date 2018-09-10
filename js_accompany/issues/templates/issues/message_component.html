@@ -1,0 +1,11 @@
+{% load issue_filters %}
+<!-- expecting `message` variable -->
+<div class="card">
+    <div class="card-header">
+        <strong>{{ message.owner_name }}</strong>
+        <span class="float-right">{{ message.date }}</span>
+    </div>
+    <div class="card-body">
+        <pre>{{ message.content }}</pre>
+    </div>
+</div>
