@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     'issues.apps.IssuesConfig',
     'accounts.apps.AccountsConfig',
+    'tags.apps.TagsConfig',
 ]
 
 ADD_REVERSION_ADMIN = True
