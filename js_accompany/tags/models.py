@@ -36,7 +36,7 @@ class Tagable(Referenceable):
 
     def register_follower(self, follower):
         """"re-entrant friendly"""
-        Followhsip.objects.create(follower=follower, tagable=self)
+        Followhsip.objects.get_or_create(follower=follower, tagable=self)
 
     def get_actions(self, refresh=False):
         if refresh or not hasattr(self, '_actions') or self._actions is None:
@@ -53,7 +53,7 @@ class Tagable(Referenceable):
         return iter(self.get_actions())
 
     def trigger_action(self, owner, action_factory, **kwargs):
-        action = action_factory(owner=owner, tag=self.pk, **kwargs)
+        action = action_factory(owner=owner, tag=self, **kwargs)
         action.save()
         return action
 
@@ -70,6 +70,12 @@ class Followhsip(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE)
     tagable = models.ForeignKey(Tagable, on_delete=models.CASCADE)
     notify = models.BooleanField(default=True)
+
+    def __str__(self):
+        return '[Follow] {} {} {}'.format(self.follower.username,
+                                          'suit' if self.notify else
+                                          'ne suit pas',
+                                          self.tagable.short_name)
 
 
 class Action(models.Model):
@@ -102,8 +108,9 @@ class Action(models.Model):
              update_fields=None):
         super().save(force_insert=force_insert, force_update=force_update,
                      using=using, update_fields=update_fields)
-        for follower in Followhsip.objects.filter(tagable=self.tag,
-                                                  notify=True):
+        for follow_rel in Followhsip.objects.filter(tagable=self.tag,
+                                                    notify=True):
+            follower = follow_rel.follower
             if follower.pk != self.owner.pk:
                 # Do not notify owner of the action
                 Notification.objects.create(action=self, recipient=follower)

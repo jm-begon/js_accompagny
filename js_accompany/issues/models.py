@@ -77,8 +77,8 @@ class StateChanged(Action):
                                                      tag in StateValue])
 
     @classmethod
-    def on_new_issue(cls, user, issue):
-        return cls.objects.create(owner=user, issue=issue,
+    def on_new_issue(cls, owner, tag):
+        return cls.objects.create(owner=owner, tag=tag,
                                   state=StateValue.opened.value)
 
     @property
