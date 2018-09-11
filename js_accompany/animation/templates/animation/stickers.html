@@ -1,5 +1,6 @@
 {% extends 'animation/base.html' %}
 {% load app_filters %}
+{% load tag_filters %}
 
 {% block content %}
     {% if view %}
@@ -23,9 +24,9 @@
         <!-- Model Category Instance: axe animation -->
         {% for sticker in view.list %}
             <div class="card"><div class="card-body">
-                <h6 id="{{ sticker.model|id_str }}" class="card-title lead">
+                <h6 id="{{ sticker.model.slug }}" class="card-title lead">
                     {{ sticker.name }}
-                    <a href="{{ view.address }}#{{ sticker.model|id_str }}" class="icon-tag"></a>
+                    <a href="#{{ sticker.model.slug }}" class="icon-tag"></a>
                 </h6>
                 <hr/>
                 <!-- Other Category Class: Formations -->
@@ -34,18 +35,18 @@
                         <p>
                             <span class="card-title">{{ category.name }}</span> <a href="{{ category.address }}#start_here" class="icon-tag"></a>
                             {% for sticker_compo in category.list %}
-                                <a href="{{ category.address }}#{{ sticker_compo|id_str }}"><span class="badge badge-pill badge-secondary badge-{{ sticker_compo.name }}">{{ sticker_compo.name }}</span></a>
+                                <a href="{{ sticker_compo|absolute_url }}"><span class="badge badge-pill badge-secondary badge-{{ sticker_compo.slug }}">{{ sticker_compo.short_name }}</span></a>
                             {% endfor %}
                         </p>
                     {% else %} <!-- long -->
                         <div class="card">
-                            <div class="card-header" id="card_header_{{ sticker.model|id_str }}_{{ category.address }}">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#card_collapsable_{{ sticker.model|id_str }}_{{ category.address }}" aria-expanded="false" aria-controls="card_{{ category.address }}">
+                            <div class="card-header" id="card_header_{{ sticker.model.slug }}_{{ category.name }}">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#card_collapsable_{{ sticker.model.slug }}_{{ category.name }}" aria-expanded="false" aria-controls="card_{{ category.address }}">
                                     <span class="icon-list"> </span>{{ category.name }}
                                 </button>
                                 {% if not category.is_raw %}
                                     <a href="{{ category.address }}#start_here" class="icon-tag"></a>
-                                    {% if  category.list|length == 0%}
+                                    {% if  category.list|length == 0 %}
                                         <span class="badge badge-danger float-right">0</span>
                                     {% else %}
                                         <span class="badge badge-success float-right">{{ category.list|length }}</span>
@@ -53,13 +54,13 @@
                                 {% endif %}
 
                             </div>
-                            <div id="card_collapsable_{{ sticker.model|id_str }}_{{ category.address }}" class="collapse {{ category.short|yesno:"show," }}" aria-labelledby="headingOne">
+                            <div id="card_collapsable_{{ sticker.model.slug }}_{{ category.name }}" class="collapse" aria-labelledby="headingOne">
                                 <div class="card-body">
                                     {% if not category.is_raw %}
                                         <ul>
                                             {% for sticker_compo in category.list %}
                                                 <li>
-                                                    <a href="{{ category.address }}#{{ sticker_compo|id_str }}">
+                                                    <a href="{{ sticker_compo|absolute_url }}">
                                                         {{ sticker_compo.name }}
                                                     </a>
                                                 </li>

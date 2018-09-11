@@ -9,5 +9,5 @@ A platform to think the accompanying of animators at J&amp;S Liège
     2. Prepare migrations `./manage.py makemigrations animation`
     3. Prepare for reversion `./manage.py createinitialrevision`
     4. Make data-model migrations `./manage.py migrate`
-    5. Make data migrations `./manage.py loaddata migrations/fixture.json`
+    5. Make data migrations `./manage.py loaddata animation/migrations/fixture.json`
       

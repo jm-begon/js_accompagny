@@ -1,263 +1,109 @@
 [
 {
     "model": "animation.field",
-    "pk": 1,
-    "fields": {
-        "name": "Animation",
-        "long_name": "Cr\u00e9e et anime"
-    }
-},
-{
-    "model": "animation.field",
     "pk": 2,
     "fields": {
-        "name": "Bien-\u00eatre",
-        "long_name": "Veille au bien-\u00eatre"
+        "name": "Animation",
+        "full_name": "Cr\u00e9e et anime"
     }
 },
 {
     "model": "animation.field",
     "pk": 3,
     "fields": {
-        "name": "Engagement",
-        "long_name": "Vit un engagement"
+        "name": "Bien-\u00eatre",
+        "full_name": "Veille au bien-\u00eatre"
     }
 },
 {
     "model": "animation.field",
     "pk": 4,
     "fields": {
-        "name": "Evalue",
-        "long_name": "Evalue"
+        "name": "Engagement",
+        "full_name": "Vit un engagement"
     }
 },
 {
     "model": "animation.field",
     "pk": 5,
     "fields": {
-        "name": "Amusement",
-        "long_name": "Favorise l'amusement"
+        "name": "Evalue",
+        "full_name": "Evalue"
     }
 },
 {
     "model": "animation.field",
     "pk": 6,
     "fields": {
+        "name": "Amusement",
+        "full_name": "Favorise l'amusement"
+    }
+},
+{
+    "model": "animation.field",
+    "pk": 7,
+    "fields": {
         "name": "Autre",
-        "long_name": "Fait d'autres trucs"
+        "full_name": "Fait d'autres trucs"
     }
 },
 {
     "model": "animation.training",
-    "pk": 1,
+    "pk": 8,
     "fields": {
         "name": "No\u00ebl"
     }
 },
 {
     "model": "animation.training",
-    "pk": 2,
+    "pk": 9,
     "fields": {
         "name": "Carnaval 1e"
     }
 },
 {
     "model": "animation.training",
-    "pk": 3,
+    "pk": 10,
     "fields": {
         "name": "Form@ctive 1e"
     }
 },
 {
     "model": "animation.training",
-    "pk": 4,
+    "pk": 11,
     "fields": {
         "name": "Toussaint"
     }
 },
 {
     "model": "animation.training",
-    "pk": 5,
+    "pk": 12,
     "fields": {
         "name": "Carnaval 2e"
     }
 },
 {
     "model": "animation.training",
-    "pk": 6,
+    "pk": 13,
     "fields": {
         "name": "Form@ctive 2e"
     }
 },
 {
     "model": "animation.training",
-    "pk": 7,
+    "pk": 14,
     "fields": {
         "name": "??"
     }
 },
 {
     "model": "animation.skill",
-    "pk": 1,
-    "fields": {
-        "name": "Organiser l'espace (disposer les enfants, placer les animateurs/trices)",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 2,
-    "fields": {
-        "name": "Proposer une activit\u00e9 (bricolage, chant, activit\u00e9 cuisine, grand/petit jeu, histoire, etc.) adapt\u00e9e au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et de l'encadrer dans l'apprentissage/la r\u00e9alisation de celle-ci",
-        "advices": "L'apprentissage de la comp\u00e9tence se fait en deux phases.\r\n\r\nLors de la premi\u00e8re, ils d\u00e9couvriraient des exemples (de chant, de bricolage, de recettes, etc.). La seconde (en vue d\u2019assurer la pr\u00e9parabilit\u00e9 \u00e0 l\u2019\u00e9valuation, cf. triple concordance) aurait pour but de mettre les form\u00e9s en situation o\u00f9 ils apprennent/encadrent l\u2019activit\u00e9 avec d\u2019autres form\u00e9s. Un tel module ne devrait pas \u00eatre chronophage. A l\u2019extr\u00eame, la premi\u00e8re phase peut \u00eatre subliminale : les chants et les petits jeux peuvent \u00eatre appris/v\u00e9cus lors des pauses, un faux JT pourrait pr\u00e9senter des bricolages chaque jour, des id\u00e9es de recette peuvent \u00eatre le th\u00e8me d\u2019une\r\n\u00e9preuve en veill\u00e9e, etc.\r\n\r\nLa seconde partie doit \u00eatre plus cadr\u00e9e, cependant, puisqu\u2019il s\u2019agit de faire un feedback \u00e0 l\u2019animateur sur l\u2019accompagnement qu\u2019il offre",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 3,
-    "fields": {
-        "name": "Rendre son r\u00e9cit vivant et dynamique",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 4,
-    "fields": {
-        "name": "Cr\u00e9er une ambiance autour d'un conte ou d'une histoire",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 5,
-    "fields": {
-        "name": "Inventer des jeux innovants",
-        "advices": "- Pr\u00e9senter/faire exp\u00e9rimenter des outils de cr\u00e9ativit\u00e9\r\n - D\u00e9construire l'\u00e9laboration d'un jeu\r\n - Pousser l'animateur \u00e0 ne pas se reposer sur ses lauriers",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 6,
-    "fields": {
-        "name": "Faire vivre la coop\u00e9ration (en diff\u00e9rents niveaux) dans ses animations",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 7,
-    "fields": {
-        "name": "Cr\u00e9er des jeux qui respectent les crit\u00e8res des jeux coop\u00e9ratifs",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 8,
-    "fields": {
-        "name": "Pr\u00e9senter le concept de bien-\u00eatre \u00e0 Jeunesse & Sant\u00e9",
-        "advices": "Est-ce vraiment une comp\u00e9tence?",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 9,
-    "fields": {
-        "name": "Cr\u00e9er des animations (notamment des grands jeux) qui d\u00e9veloppent le bien-\u00eatre tel que d\u00e9fini par J&S",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 10,
-    "fields": {
-        "name": "Utiliser les outils bien-\u00eatre/sant\u00e9 mis \u00e0 disposition par J&S",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 11,
-    "fields": {
-        "name": "Adapter son jeu en fonction du mat\u00e9riel disponible et du lieu",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 12,
-    "fields": {
-        "name": "Adapter le jeu au public (\u00e2ges, sp\u00e9cificit\u00e9s, etc.)",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 13,
-    "fields": {
-        "name": "Construire un jeu en \u00e9quipe",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
-    "pk": 14,
-    "fields": {
-        "name": "Construire un jeu en pensant \u00e0 toutes les \u00e9tapes",
-        "advices": "",
-        "fields": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.skill",
     "pk": 15,
     "fields": {
-        "name": "Utiliser  la fiche de jeu \u00e0 bon escient (y compris pour pouvoir expliquer son jeu aux autres animateurs)",
-        "advices": "",
+        "name": "Proposer une activit\u00e9 (bricolage, chant, activit\u00e9 cuisine, grand/petit jeu, histoire, etc.) adapt\u00e9e au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et de l'encadrer dans l'apprentissage/la r\u00e9alisation de celle-ci",
+        "advices": "L'apprentissage de la comp\u00e9tence se fait en deux phases.\r\n\r\nLors de la premi\u00e8re, ils d\u00e9couvriraient des exemples (de chant, de bricolage, de recettes, etc.). La seconde (en vue d'assurer la pr\u00e9parabilit\u00e9 \u00e0 l'\u00e9valuation, cf. triple concordance) aurait pour but de mettre les form\u00e9s en situation o\u00f9 ils apprennent/encadrent l'activit\u00e9 avec d'autres form\u00e9s. Un tel module ne devrait pas \u00eatre chronophage. A l'extr\u00eame, la premi\u00e8re phase peut \u00eatre subliminale : les chants et les petits jeux peuvent \u00eatre appris/v\u00e9cus lors des pauses, un faux JT pourrait pr\u00e9senter des bricolages chaque jour, des id\u00e9es de recette peuvent \u00eatre le th\u00e8me d'une \u00e9preuve en veill\u00e9e, etc.\r\n\r\nLa seconde partie doit \u00eatre plus cadr\u00e9e, cependant, puisqu'il s'agit de faire un feedback \u00e0 l'animateur sur l'accompagnement qu'il offre",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -265,10 +111,10 @@
     "model": "animation.skill",
     "pk": 16,
     "fields": {
-        "name": "R\u00e9partir le groupe en \u00e9quipes",
+        "name": "Rendre son r\u00e9cit vivant et dynamique",
         "advices": "",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -276,10 +122,10 @@
     "model": "animation.skill",
     "pk": 17,
     "fields": {
-        "name": "Utiliser et enrichir l\u2019univers au service de l\u2019animation, en fonction des d\u00e9cors, avec des chants et selon les personnages",
+        "name": "Cr\u00e9er une ambiance autour d'un conte ou d'une histoire",
         "advices": "",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -287,10 +133,10 @@
     "model": "animation.skill",
     "pk": 18,
     "fields": {
-        "name": "Organiser sa veill\u00e9e autour du sch\u00e9ma OV1-OV2-OV3",
-        "advices": "",
+        "name": "Inventer des jeux innovants",
+        "advices": "- Pr\u00e9senter/faire exp\u00e9rimenter des outils de cr\u00e9ativit\u00e9\r\n- D\u00e9construire l'\u00e9laboration d'un jeu\\r\\n - Pousser l'animateur \u00e0 ne pas se reposer sur ses lauriers",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -298,10 +144,10 @@
     "model": "animation.skill",
     "pk": 19,
     "fields": {
-        "name": "Construire des histoires originales qui s\u2019ins\u00e8rent dans le fil rouge",
+        "name": "Faire vivre la coop\u00e9ration (en diff\u00e9rents niveaux) dans ses animations",
         "advices": "",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -309,10 +155,10 @@
     "model": "animation.skill",
     "pk": 20,
     "fields": {
-        "name": "Tenir son r\u00f4le tout au long de l\u2019animation",
+        "name": "Cr\u00e9er des jeux qui respectent les crit\u00e8res des jeux coop\u00e9ratifs",
         "advices": "",
         "fields": [
-            1
+            2
         ]
     }
 },
@@ -320,369 +166,400 @@
     "model": "animation.skill",
     "pk": 21,
     "fields": {
-        "name": "Cr\u00e9er un personnage adapt\u00e9 \u00e0 la situation (r\u00f4le, public\u2026)",
+        "name": "Pr\u00e9senter le concept de bien-\u00eatre \u00e0 Jeunesse & Sant\u00e9",
         "advices": "",
         "fields": [
-            1
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 22,
+    "fields": {
+        "name": "Cr\u00e9er des animations (notamment des grands jeux) qui d\u00e9veloppent le bien-\u00eatre tel que d\u00e9fini par J&S",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 23,
+    "fields": {
+        "name": "Utiliser les outils bien-\u00eatre/sant\u00e9 mis \u00e0 disposition par J&S",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 24,
+    "fields": {
+        "name": "Adapter son jeu en fonction du mat\u00e9riel disponible et du lieu",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 25,
+    "fields": {
+        "name": "Adapter le jeu au public (\u00e2ges, sp\u00e9cificit\u00e9s, etc.)",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 26,
+    "fields": {
+        "name": "Construire un jeu en \u00e9quipe",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 27,
+    "fields": {
+        "name": "Construire un jeu en pensant \u00e0 toutes les \u00e9tapes",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 28,
+    "fields": {
+        "name": "Utiliser la fiche de jeu \u00e0 bon escient (y compris pour pouvoir expliquer son jeu aux autres animateurs)",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 29,
+    "fields": {
+        "name": "R\u00e9partir le groupe en \u00e9quipes",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 30,
+    "fields": {
+        "name": "Utiliser et enrichir l'univers au service de l'animation, en fonction des d\u00e9cors, avec des chants et selon les personnages",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 31,
+    "fields": {
+        "name": "Organiser sa veill\u00e9e autour du sch\u00e9ma OV1-OV2-OV3",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 32,
+    "fields": {
+        "name": "Construire des histoires originales qui s'ins\u00e8rent dans le fil rouge",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 33,
+    "fields": {
+        "name": "Tenir son r\u00f4le tout au long de l'animation",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 34,
+    "fields": {
+        "name": "Cr\u00e9er un personnage adapt\u00e9 \u00e0 la situation (r\u00f4le, public, etc.)",
+        "advices": "",
+        "fields": [
+            2
+        ]
+    }
+},
+{
+    "model": "animation.skill",
+    "pk": 35,
+    "fields": {
+        "name": "Organiser l'espace (disposer les enfants, placer les animateurs/trices)",
+        "advices": "",
+        "fields": [
+            2
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 1,
+    "pk": 36,
     "fields": {
         "name": "Veill\u00e9e",
-        "training": 1,
+        "of_training": 8,
         "skills": [
-            1,
-            16,
-            17,
-            18,
-            19
+            29,
+            30,
+            31,
+            32,
+            35
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 2,
+    "pk": 37,
     "fields": {
         "name": "Bricolage",
-        "training": 1,
+        "of_training": 8,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 3,
+    "pk": 38,
     "fields": {
         "name": "Chant",
-        "training": 1,
+        "of_training": 8,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 4,
+    "pk": 39,
     "fields": {
         "name": "Cuisine",
-        "training": 7,
+        "of_training": 14,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 5,
+    "pk": 40,
     "fields": {
         "name": "Grands jeux de plaine",
-        "training": 7,
+        "of_training": 14,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 6,
+    "pk": 41,
     "fields": {
         "name": "Petits jeux (de plaine)",
-        "training": 7,
+        "of_training": 14,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 7,
+    "pk": 42,
     "fields": {
         "name": "Jeux dynamisants",
-        "training": 7,
+        "of_training": 14,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 8,
+    "pk": 43,
     "fields": {
         "name": "Jeux de connaissance",
-        "training": 1,
+        "of_training": 8,
         "skills": [
-            2
+            15
         ]
     }
 },
 {
     "model": "animation.module",
-    "pk": 9,
+    "pk": 44,
     "fields": {
         "name": "Raconte moi une histoire",
-        "training": 2,
+        "of_training": 9,
         "skills": [
-            2,
-            3,
-            4
-        ]
-    }
-},
-{
-    "model": "animation.module",
-    "pk": 10,
-    "fields": {
-        "name": "Jeux orig\u00e9niaux",
-        "training": 5,
-        "skills": [
-            5
-        ]
-    }
-},
-{
-    "model": "animation.module",
-    "pk": 11,
-    "fields": {
-        "name": "Jeux coop",
-        "training": 5,
-        "skills": [
-            6,
-            7
-        ]
-    }
-},
-{
-    "model": "animation.module",
-    "pk": 12,
-    "fields": {
-        "name": "Jeux bien-\u00eatre",
-        "training": 5,
-        "skills": [
-            8,
-            9,
-            10
-        ]
-    }
-},
-{
-    "model": "animation.module",
-    "pk": 13,
-    "fields": {
-        "name": "Jeux",
-        "training": 1,
-        "skills": [
-            11,
-            12,
-            13,
-            14,
-            15
-        ]
-    }
-},
-{
-    "model": "animation.module",
-    "pk": 14,
-    "fields": {
-        "name": "Travail du personnage",
-        "training": 1,
-        "skills": [
-            20,
-            21
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 1,
-    "fields": {
-        "name": "En fonction de la situation (donne des consignes, animateur volant, chef d'\u00e9quipe, etc.) je m'approprie l'espace de mani\u00e8re ad\u00e9quate",
-        "skills": [
-            1
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 2,
-    "fields": {
-        "name": "En dehors des activit\u00e9s pr\u00e9vues (ex.: pendant les temps libres, d\u00e9placement, temps calme de la sieste, etc.) je propose des activit\u00e9s (grands et patits jeux de plaine, chants, pri\u00e8res, histoires, etc.) adapt\u00e9es au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et j'encadre les enfants dans l\u2019apprentissage/la r\u00e9alisation de celles-ci.",
-        "skills": [
-            2
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 3,
-    "fields": {
-        "name": "Lors des activit\u00e9s pr\u00e9vues, hors grands jeux/veill\u00e9es (ex. : temps d\u2019\u00e9quipe, ALS, \u00e9valuation, etc.), je propose des activit\u00e9s adapt\u00e9e au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et j\u2019encadre les enfants dans la r\u00e9alisation de celles-ci",
-        "skills": [
-            2
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 4,
-    "fields": {
-        "name": "Je mets en place un dispositif de s\u00e9curit\u00e9 adapt\u00e9 \u00e0 la situation",
-        "skills": [
-            2
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 5,
-    "fields": {
-        "name": "En toutes circonstances, je donne des consignes adapt\u00e9es \u00e0 l\u2019activit\u00e9 propos\u00e9e et m\u2019assure de leur respect",
-        "skills": [
-            2
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 6,
-    "fields": {
-        "name": "Je respecte le mat\u00e9riel (j'\u00e9vite le gaspillage et je n\u2019oublie pas le rangement)",
-        "skills": [
-            2
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 7,
-    "fields": {
-        "name": "Je cr\u00e9e des jeux in\u00e9dits, dits \"orig\u00e9niaux\"",
-        "skills": [
-            5
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 8,
-    "fields": {
-        "name": "Je fais passer des messages et des valeurs gr\u00e2ce \u00e0 mes animations (bien-\u00eatre, coop\u00e9ration, etc.)",
-        "skills": [
-            6,
-            7
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 9,
-    "fields": {
-        "name": "Je connais le concept de bien-\u00eatre \u00e0 Jeunesse et Sant\u00e9 et je sais l\u2019expliquer",
-        "skills": [
-            8
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 10,
-    "fields": {
-        "name": "je fais passer des messages et des valeurs gr\u00e2ce \u00e0 mes animations (bien-\u00eatre, coop\u00e9ration\u2026)",
-        "skills": [
-            9,
-            10
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 11,
-    "fields": {
-        "name": "j'adapte mon jeu aux petits impr\u00e9vus et/ou au terrain (lieu, mat\u00e9riel, intemp\u00e9ries, timing\u2026)",
-        "skills": [
-            11
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 12,
-    "fields": {
-        "name": "J'adapte mes jeux au public (tranche d'\u00e2ge et sp\u00e9cificit\u00e9 de mon s\u00e9jour)",
-        "skills": [
-            12,
-            19
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 13,
-    "fields": {
-        "name": "Je participe aux r\u00e9unions, je suis actif et je donne des id\u00e9es.",
-        "skills": [
-            13
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 14,
-    "fields": {
-        "name": "Je reste constructif, respecte les id\u00e9es des autres et favorise le compromis sans imposer mes id\u00e9es",
-        "skills": [
-            13
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 15,
-    "fields": {
-        "name": "Je fais appara\u00eetre et respecte les diff\u00e9rentes \u00e9tapes d'un jeu dans la pr\u00e9paration de mes jeux (rassembler les enfants, donner les consignes, intro, d\u00e9roulement, motiver, bouquet final, conclusion, transition...)",
-        "skills": [
-            14
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 16,
-    "fields": {
-        "name": "Je pr\u00e9pare mes grands jeux en remplissant la fiche de jeu de mani\u00e8re ad\u00e9quate",
-        "skills": [
-            15
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 17,
-    "fields": {
-        "name": "Je r\u00e9partis les enfants en \u00e9quipe avec des m\u00e9thodes vari\u00e9es et originales, et si possible adapt\u00e9es au th\u00e8me)",
-        "skills": [
-            16
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 18,
-    "fields": {
-        "name": "Lors de mes diff\u00e9rents jeux je propose des \u00e9l\u00e9ments qui enrichissent l'univers (cr\u00e9ation/utilisation des d\u00e9cors, chants adapt\u00e9s, \u00e9preuves en rapport avec le th\u00e8me\u2026)",
-        "skills": [
+            15,
+            16,
             17
         ]
     }
 },
 {
-    "model": "animation.criterion",
-    "pk": 19,
+    "model": "animation.module",
+    "pk": 45,
     "fields": {
-        "name": "Je fais appara\u00eetre et respecte les \u00e9tapes OV1-2-3 dans la pr\u00e9paration de mes veill\u00e9es (fiches, animations adapt\u00e9es\u2026)",
+        "name": "Jeux orig\u00e9niaux",
+        "of_training": 12,
+        "skills": [
+            18
+        ]
+    }
+},
+{
+    "model": "animation.module",
+    "pk": 46,
+    "fields": {
+        "name": "Jeux coop",
+        "of_training": 12,
+        "skills": [
+            19,
+            20
+        ]
+    }
+},
+{
+    "model": "animation.module",
+    "pk": 47,
+    "fields": {
+        "name": "Jeux bien-\u00eatre",
+        "of_training": 12,
+        "skills": [
+            21,
+            22,
+            23
+        ]
+    }
+},
+{
+    "model": "animation.module",
+    "pk": 48,
+    "fields": {
+        "name": "Jeux",
+        "of_training": 8,
+        "skills": [
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "animation.module",
+    "pk": 49,
+    "fields": {
+        "name": "Travail du personnage",
+        "of_training": 8,
+        "skills": [
+            33,
+            34
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 50,
+    "fields": {
+        "name": "En fonction de la situation (donne des consignes, animateur volant, chef d'\u00e9quipe, etc.) je m'approprie l'espace de mani\u00e8re ad\u00e9quate",
+        "skills": [
+            35
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 51,
+    "fields": {
+        "name": "En dehors des activit\u00e9s pr\u00e9vues (ex.: pendant les temps libres, d\u00e9placement, temps calme de la sieste, etc.) je propose des activit\u00e9s (grands et patits jeux de plaine, chants, pri\u00e8res, histoires, etc.) adapt\u00e9es au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et j'encadre les enfants dans l'apprentissage/la r\u00e9alisation de celles-ci",
+        "skills": [
+            15
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 52,
+    "fields": {
+        "name": "Lors des activit\u00e9s pr\u00e9vues, hors grands jeux/veill\u00e9es (ex. : temps d'\u00e9quipe, ALS, \u00e9valuation, etc.), je propose des activit\u00e9s adapt\u00e9e au public (\u00e2ge, s\u00e9curit\u00e9, etc.) et j'encadre les enfants dans la r\u00e9alisation de celles-ci",
+        "skills": [
+            15
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 53,
+    "fields": {
+        "name": "Je mets en place un dispositif de s\u00e9curit\u00e9 adapt\u00e9 \u00e0 la situation",
+        "skills": [
+            15
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 54,
+    "fields": {
+        "name": "En toutes circonstances, je donne des consignes adapt\u00e9es \u00e0 l'activit\u00e9 propos\u00e9e et m'assure de leur respect",
+        "skills": [
+            15
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 55,
+    "fields": {
+        "name": "Je respecte le mat\u00e9riel (j'\u00e9vite le gaspillage et je n'oublie pas le rangement)",
+        "skills": [
+            15
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 56,
+    "fields": {
+        "name": "Je cr\u00e9e des jeux in\u00e9dits, dits \"orig\u00e9niaux\"",
         "skills": [
             18
         ]
@@ -690,29 +567,20 @@
 },
 {
     "model": "animation.criterion",
-    "pk": 20,
+    "pk": 57,
     "fields": {
-        "name": "Les histoires de mes jeux sont en coh\u00e9rence avec le fil rouge fix\u00e9 avec l'\u00e9quipe et permettent aux enfants de se plonger dans l'aventure globale",
+        "name": "Je fais passer des messages et des valeurs gr\u00e2ce \u00e0 mes animations (bien-\u00eatre, coop\u00e9ration, etc.)",
         "skills": [
-            19
-        ]
-    }
-},
-{
-    "model": "animation.criterion",
-    "pk": 21,
-    "fields": {
-        "name": "Je respecte mon personnage (dans tous ses aspects) tout au long de l'animation, y compris pour donner les consignes.",
-        "skills": [
+            19,
             20
         ]
     }
 },
 {
     "model": "animation.criterion",
-    "pk": 22,
+    "pk": 58,
     "fields": {
-        "name": "Mes d\u00e9guisements sont un r\u00e9el atout pour compl\u00e9ter mon personnage.",
+        "name": "Je connais le concept de bien-\u00eatre \u00e0 Jeunesse et Sant\u00e9 et je sais l'expliquer",
         "skills": [
             21
         ]
@@ -720,11 +588,132 @@
 },
 {
     "model": "animation.criterion",
-    "pk": 23,
+    "pk": 60,
+    "fields": {
+        "name": "J'adapte mon jeu aux petits impr\u00e9vus et/ou au terrain (lieu, mat\u00e9riel, intemp\u00e9ries, timing, etc.)",
+        "skills": [
+            24
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 61,
+    "fields": {
+        "name": "J'adapte mes jeux au public (tranche d'\u00e2ge et sp\u00e9cificit\u00e9 de mon s\u00e9jour)",
+        "skills": [
+            25,
+            32
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 62,
+    "fields": {
+        "name": "Je participe aux r\u00e9unions, je suis actif et je donne des id\u00e9es",
+        "skills": [
+            26
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 63,
+    "fields": {
+        "name": "Je reste constructif, respecte les id\u00e9es des autres et favorise le compromis sans imposer mes id\u00e9es",
+        "skills": [
+            26
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 64,
+    "fields": {
+        "name": "Je fais appara\u00eetre et respecte les diff\u00e9rentes \u00e9tapes d'un jeu dans la pr\u00e9paration de mes jeux (rassembler les enfants, donner les consignes, intro, d\u00e9roulement, motiver, bouquet final, conclusion, transition...)",
+        "skills": [
+            27
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 65,
+    "fields": {
+        "name": "Je pr\u00e9pare mes grands jeux en remplissant la fiche de jeu de mani\u00e8re ad\u00e9quate",
+        "skills": [
+            28
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 66,
+    "fields": {
+        "name": "Je r\u00e9partis les enfants en \u00e9quipe avec des m\u00e9thodes vari\u00e9es et originales, et si possible adapt\u00e9es au th\u00e8me)",
+        "skills": [
+            29
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 67,
+    "fields": {
+        "name": "Lors de mes diff\u00e9rents jeux je propose des \u00e9l\u00e9ments qui enrichissent l'univers (cr\u00e9ation/utilisation des d\u00e9cors, chants adapt\u00e9s, \u00e9preuves en rapport avec le th\u00e8me, etc.)",
+        "skills": [
+            30
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 68,
+    "fields": {
+        "name": "Je fais appara\u00eetre et respecte les \u00e9tapes OV1-2-3 dans la pr\u00e9paration de mes veill\u00e9es (fiches, animations adapt\u00e9es, etc.)",
+        "skills": [
+            31
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 69,
+    "fields": {
+        "name": "Les histoires de mes jeux sont en coh\u00e9rence avec le fil rouge fix\u00e9 avec l'\u00e9quipe et permettent aux enfants de se plonger dans l'aventure globale",
+        "skills": [
+            32
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 70,
+    "fields": {
+        "name": "Je respecte mon personnage (dans tous ses aspects) tout au long de l'animation, y compris pour donner les consignes",
+        "skills": [
+            33
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 71,
+    "fields": {
+        "name": "Mes d\u00e9guisements sont un r\u00e9el atout pour compl\u00e9ter mon personnage",
+        "skills": [
+            34
+        ]
+    }
+},
+{
+    "model": "animation.criterion",
+    "pk": 72,
     "fields": {
         "name": "Au besoin, j'utilise la fiche personnage",
         "skills": [
-            21
+            34
         ]
     }
 }

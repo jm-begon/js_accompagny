@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, reverse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import *
 
@@ -39,7 +39,7 @@ class MainCategory(object):
 
     @classmethod
     def from_(cls, Model_cls, sticker_list):
-        return MainCategory(Model_cls.name_fr, Model_cls.linkable_name,
+        return MainCategory(Model_cls.name_fr, Model_cls.get_list_url(),
                             sticker_list)
 
 
@@ -57,27 +57,27 @@ class Category(MainCategory):
     @classmethod
     def fields(cls, iterable, short=True):
         return cls.from_iterable(iterable, Field.name_fr,
-                                 Field.linkable_name, short)
+                                 Field.get_list_url(), short)
 
     @classmethod
     def trainings(cls, iterable, short=True):
         return cls.from_iterable(iterable, Training.name_fr,
-                                 Training.linkable_name, short)
+                                 Training.get_list_url(), short)
 
     @classmethod
     def skills(cls, iterable, short=False):
         return cls.from_iterable(iterable, Skill.name_fr,
-                                 Skill.linkable_name, short)
+                                 Skill.get_list_url(), short)
 
     @classmethod
     def modules(cls, iterable, short=True):
         return cls.from_iterable(iterable, Module.name_fr,
-                                 Module.linkable_name, short)
+                                 Module.get_list_url(), short)
 
     @classmethod
     def criteria(cls, iterable, short=False):
         return cls.from_iterable(iterable, Criterion.name_fr,
-                                 Criterion.linkable_name, short)
+                                 Criterion.get_list_url(), short)
 
     @classmethod
     def fields_from_skills(cls, skills, short=True):
@@ -88,7 +88,7 @@ class Category(MainCategory):
 
     @classmethod
     def trainings_from_modules(cls, modules, short=True):
-        trainings = {m.training for m in modules}
+        trainings = {m.of_training for m in modules}
         return cls.trainings(trainings, short)
 
     @classmethod
@@ -118,7 +118,7 @@ class Category(MainCategory):
         d = {}
         for training in trainings:
             d.update({x.id: x for x in
-                      Module.objects.filter(training=training.id).distinct()})
+                      Module.objects.filter(of_training=training).distinct()})
         return cls.modules(d.values(), short)
 
     @classmethod
@@ -139,15 +139,27 @@ class Category(MainCategory):
     def __iter__(self):
         return iter(self.list)
 
+    @property
+    def slug(self):
+        slugify()
+
 
 def create_navigation(model_cls):
     return tuple((
-        Navigation(Model.name_fr, Model.linkable_name, Model is model_cls)
+        Navigation(Model.name_fr, Model.get_list_url(), Model is model_cls)
         for Model in (Field, Training, Skill, Module, Criterion)
     ))
 
 
-def fields(request):
+def redirect_(view_name, slug):
+    return HttpResponseRedirect(
+        '{}#{}'.format(reverse('animation:{}'.format(view_name)),
+                       slug))
+
+
+def fields(request, slug=None):
+    if slug is not None:
+        return redirect_('axes', slug)
     field_stickers = []
     for field in MainCategory.get_fields():
         skill_category = Category.skills_from_fields([field])
@@ -158,7 +170,7 @@ def fields(request):
 
         criterion_category = Category.criteria_from_skills(skill_category)
 
-        field_stickers.append(Sticker(field, field.long_name,
+        field_stickers.append(Sticker(field, field.full_name,
                                       [training_category, module_category,
                                        skill_category, criterion_category]))
 
@@ -167,7 +179,9 @@ def fields(request):
                   {'view': view, 'navigation': create_navigation(Field)})
 
 
-def trainings(request):
+def trainings(request, slug=None):
+    if slug is not None:
+        return redirect_('formations', slug)
     training_stickers = []
     for training in MainCategory.get_trainings():
         module_category = Category.modules_from_trainings([training])
@@ -187,7 +201,9 @@ def trainings(request):
                   {'view': view, 'navigation': create_navigation(Training)})
 
 
-def modules(request):
+def modules(request, slug=None):
+    if slug is not None:
+        return redirect_('modules', slug)
     module_stickers = []
     for module in MainCategory.get_modules():
         training_category = Category.trainings_from_modules([module])
@@ -207,7 +223,9 @@ def modules(request):
                   {'view': view, 'navigation': create_navigation(Module)})
 
 
-def skills(request):
+def skills(request, slug=None):
+    if slug is not None:
+        return redirect_('competences', slug)
     skill_stickers = []
     for skill in MainCategory.get_skills():
         field_category = Category.fields_from_skills([skill])
@@ -232,7 +250,9 @@ def skills(request):
                   {'view': view, 'navigation': create_navigation(Skill)})
 
 
-def criteria(request):
+def criteria(request, slug=None):
+    if slug is not None:
+        return redirect_('criteres', slug)
     criterion_stickers = []
     for criterion in MainCategory.get_criteria():
         skill_category = Category.skills_from_criteria([criterion])
@@ -274,7 +294,7 @@ def unassigned(request):
     missing_field_from_skills = Missing(
         'Compétences sans axe',
         'field_from_skills',
-        Skill.linkable_name,
+        Skill.view_name,
         missing_field_from_skills
     )
 
@@ -282,7 +302,7 @@ def unassigned(request):
     missing_skill_for_field = Missing(
         'Axe vide (aucune compétence)',
         'skill_for_field',
-        Field.linkable_name,
+        Field.view_name,
         missing_skill_for_field
     )
 
@@ -290,7 +310,7 @@ def unassigned(request):
     missing_advices_from_skills = Missing(
         'Compétences sans conseil',
         'advice_from_skill',
-        Skill.linkable_name,
+        Skill.view_name,
         missing_adives
     )
 
@@ -298,8 +318,8 @@ def unassigned(request):
     missing_training_for_modules = Missing(
         'Modules non-assignés (aucune formation)',
         'training_for_module',
-        Module.linkable_name,
-        Module.objects.filter(training__name="??")
+        Module.view_name,
+        Module.objects.filter(of_training__name="??")
     )
 
     # Module-based stuff
@@ -316,7 +336,7 @@ def unassigned(request):
     missing_module_for_skill = Missing(
         'Compétences non-assignées (aucun module)',
         'module_for_skill',
-        Skill.linkable_name,
+        Skill.view_name,
         missing_module_for_skill
     )
 
@@ -324,7 +344,7 @@ def unassigned(request):
     missing_skill_for_module = Missing(
         'Modules vides (aucune compétence)',
         'skill_for_module',
-        Module.linkable_name,
+        Module.view_name,
         missing_skill_for_module
     )
 
@@ -342,14 +362,14 @@ def unassigned(request):
     missing_criterion_for_skill = Missing(
         'Compétences non-évaluées (aucun critère)',
         'criterion_for_skill',
-        Skill.linkable_name,
+        Skill.view_name,
         missing_criterion_for_skill
     )
     # - Criterion without skill
     missing_skill_for_criterion = Missing(
         'Critères inutiles (aucune compétence)',
         'skill_for_criterion',
-        Criterion.linkable_name,
+        Criterion.view_name,
         missing_skill_for_criterion
     )
 
