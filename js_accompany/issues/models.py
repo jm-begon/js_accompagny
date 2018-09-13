@@ -2,7 +2,7 @@ from enum import Enum
 
 from django.db import models
 
-from tags.models import Action, Tagable
+from tags.models import Action, Tagable, TagSomething
 
 
 def clip(s, max_size=100):
@@ -30,10 +30,11 @@ class Issue(Tagable):
 
     def trigger_action(self, owner, action_factory, **kwargs):
         self.register_follower(owner)
-        super().trigger_action(owner, action_factory, **kwargs)
+        return super().trigger_action(owner, action_factory, **kwargs)
 
     @property
     def long_name(self):
+        print(self.__class__.__name__, self.title)
         return self.title
 
     @property
@@ -42,7 +43,7 @@ class Issue(Tagable):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('issues.views.IssueDetailView',
+        return reverse('issues:issue-detail',
                        args=[str(self.pk)])
 
     def __str__(self):
@@ -70,6 +71,11 @@ class Issue(Tagable):
     def get_messages(self, refresh=False):
         return [a for a in self.get_actions(refresh)
                 if isinstance(a, MessagePosted)]
+
+    def get_remaining_tags(self):
+        # TODO do better
+        already_pks = TagSomething.objects.filter(tag_about=self).values('pk')
+        return Tagable.objects.all().exclude(pk__in=already_pks).select_subclasses()
 
 
 class StateChanged(Action):

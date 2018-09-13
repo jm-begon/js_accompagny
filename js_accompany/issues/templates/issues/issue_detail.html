@@ -3,6 +3,7 @@
 {% block content %}
 
     <h1>{{ issue.title }}</h1>
+    {# Close issue #}
     {% for action in issue|actions %}
         {% include "./action_component.html" with action=action %}
         <br/>
@@ -10,7 +11,14 @@
 
 
     {% if not issue|is_closed %}
-        <div class="card mt-5">
+        <div class="mt-5"></div>
+        {# Add tag #}
+
+        {% include './add_tag_form.html' %}
+        <br/>
+
+        {# Add new message #}
+        <div class="card">
             <div class="card-header">
                 Répondre:
             </div>

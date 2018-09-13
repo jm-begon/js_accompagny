@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.db import transaction
 
+from tags.models import Tagable
 from .models import Issue, MessagePosted
 
 
@@ -15,6 +16,8 @@ class IssueListView(ListView):
 
     model = Issue
     paginate_by = None  # if pagination is desired
+
+    ordering = ['-pk']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -54,7 +57,7 @@ def save_issue(request):
 
 
 @transaction.atomic
-#@permission_required('issues.add_messageposted', raise_exception=True)
+# @permission_required('issues.add_messageposted', raise_exception=True)
 def add_message(request, issue_pk):
     issue = get_object_or_404(Issue, pk=issue_pk)
     try:
@@ -64,8 +67,27 @@ def add_message(request, issue_pk):
     except (KeyError, ValueError) as err:
         return render(request, "issues/issue_detail.html",
                       {'object': issue, 'error_message': str(err)})
+        # TODO message
 
-    MessagePosted.new_message(request.user, issue=issue, content=content)
+    MessagePosted.new_message(request.user, tag=issue, content=content)
+
+    return HttpResponseRedirect(reverse('issues:issue-detail', args=(issue.pk,)))
+
+
+def add_tag(request, issue_pk):
+    issue = get_object_or_404(Issue, pk=issue_pk)
+    try:
+        print('POST', request.POST)
+        tag_pk = request.POST['tag-selected']
+        if tag_pk is None:
+            raise ValueError('Aucun tag selectionné')
+    except (KeyError, ValueError) as err:
+        return render(request, "issues/issue_detail.html",
+                      {'object': issue, 'error_message': str(err)})
+        # TODO message
+
+    tag_inst = Tagable.objects.select_subclasses().get(pk=tag_pk)
+    tag_inst.create_tag(request.user, Issue.objects.get(pk=issue_pk))
 
     return HttpResponseRedirect(reverse('issues:issue-detail', args=(issue.pk,)))
 

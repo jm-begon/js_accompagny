@@ -1,0 +1,15 @@
+{# Expecting 'issue' variable #}
+{% load issue_filters %}
+
+<form method="post" action="{% url 'issues:add-tag' issue.pk %}">
+    {% csrf_token %}
+    <select class="form-control" name="tag-selected" required>
+            <option selected="selected" disabled>Ajouter un tag</option>
+        {% for tag in issue|remaining_tags %}
+            <option value="{{ tag.pk }}">
+                {{ tag|string }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" value="tag-selected" class="btn btn-primary">Tagger</button>
+</form>

@@ -1,0 +1,18 @@
+{# expecting 'referenceables': a list of referenceables of the same class #}
+
+{% with referenceables|first as first_ref %}
+    {% if first_ref.prefere_short %}
+        {# short #}
+        {% for ref in referenceables %}
+            {% include 'referenceable_componenent.html' with referenceable=ref %}
+        {% endfor %}
+    {% else %}
+        {# long #}
+        <ul>
+            {% for ref in referenceables %}
+                <li>{% include 'referenceable_componenent.html' with referenceable=ref %}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+

@@ -1,0 +1,7 @@
+{# May receive `in_navbar` variable  #}
+{% load tag_filters %}
+{% if user|has_notifications %}
+    <a href="{% url 'accounts:notifications' %}" title="Notifications" class="icon-envelope-letter text-danger"></a>
+{% else %}
+    <a href="{% url 'accounts:notifications' %}" title="Notifications" class="icon-envelope {{ in_navbar|yesno:"navbar-text," }}"></a>
+{% endif %}

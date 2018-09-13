@@ -10,4 +10,5 @@ urlpatterns = [
     path('new/', views.create_issue, name='create-issue'),
     path('save/', views.save_issue, name='save-issue'),
     path('add-message/<int:issue_pk>', views.add_message, name='add-message'),
+    path('add-tag/<int:issue_pk>', views.add_tag, name='add-tag'),
 ]

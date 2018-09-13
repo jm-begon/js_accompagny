@@ -1,0 +1,6 @@
+{% load issue_filters %}
+{# expecting `tagtion` variable #}
+<p>
+    <strong>{{ tagtion.owner_name }}</strong> a taggué {% include 'tags/referenceable_component.html' with referenceable=tagtion.get_tag_about %}
+    le {{ tagtion.date }}
+</p>

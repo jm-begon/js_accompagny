@@ -1,5 +1,6 @@
 from django import template
-from ..models import Issue, StateChanged, StateValue, MessagePosted, Action
+from ..models import Issue, StateChanged, StateValue, MessagePosted
+from tags.models import Action, TagSomething
 
 register = template.Library()
 
@@ -60,13 +61,13 @@ def actions(value, update=False):
     if isinstance(value, Issue):
         return value.get_actions(update)
     else:
-        raise ValueError('Can only get actions from {}'
-                         ''.format(Issue.__class__.__name__))
+        raise ValueError('Can only get actions from {}, got {}'
+                         ''.format(Issue.__class__.__name__,
+                                   value.__class__.__name__))
 
 
 @register.filter
 def is_action_instance(value, action_cls_name=None):
-    print(type(value), value)  # TODO
     if not isinstance(value, Action):
         return False
     if action_cls_name is None:
@@ -75,5 +76,22 @@ def is_action_instance(value, action_cls_name=None):
         return isinstance(value, StateChanged)
     elif action_cls_name == "MessagePosted":
         return isinstance(value, MessagePosted)
+    elif action_cls_name == "TagSomething":
+        return isinstance(value, TagSomething)
     else:
         return False
+
+
+@register.filter
+def remaining_tags(value):
+    if isinstance(value, Issue):
+        return value.get_remaining_tags()
+    else:
+        raise ValueError('Can only get remaining tags from \'\''
+                         ''.format(Issue.__name__))
+
+
+@register.filter
+def string(value):
+    return str(value)
+

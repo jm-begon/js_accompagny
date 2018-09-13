@@ -10,6 +10,7 @@
             <div>
                 {% if user.is_authenticated %}
                     <span class="navbar-text" title="Utilisateur">Bienvenu {{ user }}</span>
+                    {% include 'accounts/notif_icon.html' with in_navbar=True %}
                     <a href="{% url 'accounts:settings' %}" class="navbar-text icon-settings" title="Paramètres"></a>
                     {% if user.is_staff %}
                         <a href="/admin/" class="navbar-text icon-wrench" title="Zone administrateur"></a>

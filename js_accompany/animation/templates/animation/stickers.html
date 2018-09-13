@@ -6,7 +6,7 @@
     {% if view %}
         <div class="jumbotron">
             <h1 class="display-4">Plan de formation J&S Liège</h1>
-            <p class="lead">Bienvenu sur la page '{{ view.name }}' du plan de formation</p>
+            <p class="lead">Bienvenue sur la page '{{ view.name }}' du plan de formation</p>
             <hr/>
             <p><a class="btn btn-primary btn-lg" href="#start_here" role="button">Let's go </a></p>
 
@@ -24,10 +24,13 @@
         <!-- Model Category Instance: axe animation -->
         {% for sticker in view.list %}
             <div class="card"><div class="card-body">
-                <h6 id="{{ sticker.model.slug }}" class="card-title lead">
-                    {{ sticker.name }}
-                    <a href="#{{ sticker.model.slug }}" class="icon-tag"></a>
-                </h6>
+                <div>
+                    <h6 id="{{ sticker.model.slug }}" class="card-title lead">
+                        {{ sticker.name }}
+                        <a href="#{{ sticker.model.slug }}" class="icon-tag"></a>
+                    </h6>
+                    <form
+                </div>
                 <hr/>
                 <!-- Other Category Class: Formations -->
                 {% for category in sticker.components %}

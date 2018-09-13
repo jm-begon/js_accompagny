@@ -1,12 +1,12 @@
-from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.template.context_processors import csrf
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
-
+from tags.models import Notification
 from .forms import MyRegistrationForm
 
 
@@ -49,3 +49,10 @@ def serve_template(template_name, context=None):
 @login_required
 def settings(request):
     return render(request, 'accounts/settings.html', {})
+
+
+def notifications(request):
+    Notification.mark_all_as_seen(request.user)
+    return HttpResponseRedirect(
+        '{}#{}'.format(reverse('accounts:settings'), 'Notifications')
+    )

@@ -57,12 +57,12 @@ class Tagable(Referenceable):
         action.save()
         return action
 
-    def create_tag(self, owner, referenceable=None):
+    def create_tag(self, owner, tagable=None):
         a1 = self.trigger_action(owner, TagCreation)
         a2 = None
-        if referenceable is not None \
-                and isinstance(referenceable, Referenceable):
-            a2 = self.trigger_action(owner, Tagged, tagged_by=referenceable)
+        if tagable is not None \
+                and isinstance(tagable, Tagable):
+            a2 = tagable.trigger_action(owner, TagSomething, tag_about=self)
         return a1, a2
 
 
@@ -72,10 +72,10 @@ class Followhsip(models.Model):
     notify = models.BooleanField(default=True)
 
     def __str__(self):
-        return '[Follow] {} {} {}'.format(self.follower.username,
-                                          'suit' if self.notify else
-                                          'ne suit pas',
-                                          self.tagable.short_name)
+        return '[Follow {}] {} {} {}'.format(self.pk, self.follower.username,
+                                             'suit' if self.notify else
+                                             'ne suit pas',
+                                             self.tagable.short_name)
 
 
 class Action(models.Model):
@@ -92,6 +92,14 @@ class Action(models.Model):
                                      self.owner, self.date, self.tag)
 
     @property
+    def true_tag(self):
+        if not hasattr(self, '_true_tag'):
+            self._true_tag = Tagable.objects.filter(
+                pk=self.tag.pk
+            ).select_subclasses()[0]
+        return self._true_tag
+
+    @property
     def owner_name(self):
         return self.owner.username
 
@@ -101,7 +109,7 @@ class Action(models.Model):
 
     @property
     def goto(self):
-        return self.tag.get_absolute_url()
+        return self.true_tag.get_absolute_url()
 
     @transaction.atomic
     def save(self, force_insert=False, force_update=False, using=None,
@@ -118,19 +126,26 @@ class Action(models.Model):
 
 class TagCreation(Action):
     """This represents the creation of tag referencing a given tageable from
-    the outisde"""
+    the outisde. The tag field must reference the target Tageable"""
     @property
     def notif_message(self):
         return "Creation d'un nouveau tag"
 
 
-class Tagged(Action):
+class TagSomething(Action):
     """This represents a tageable being tagged"""
-    tagged_by = models.ForeignKey(Referenceable, on_delete=models.CASCADE)
+    tag_about = models.ForeignKey(Referenceable, on_delete=models.CASCADE)
+
+    @property
+    def get_tag_about(self):
+        return Tagable.objects.select_subclasses().get(pk=self.tag_about.pk)
 
     @property
     def notif_message(self):
         return "Taggué"
+
+    def __str__(self):
+        return super().__str__() + " --> {}".format(self.tag_about)
 
 
 class Notification(models.Model):
@@ -141,8 +156,49 @@ class Notification(models.Model):
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
     seen_on = models.DateTimeField('Vu', null=True)
 
+    @classmethod
+    def get_notifications(cls, user, only_unseen=False):
+        # TODO do better
+        if only_unseen:
+            notifs = Notification.objects.filter(recipient=user, seen_on=None)
+        else:
+            notifs = Notification.objects.filter(recipient=user)
+        notifs = notifs.order_by('-pk')
+        return notifs
+
+    @classmethod
+    def get_actions(cls, user, only_unseen=False):
+        # TODO do better
+        if only_unseen:
+            action_ids = Notification.objects.filter(recipient=user, seen_on=None).values('action')
+        else:
+            action_ids = Notification.objects.filter(recipient=user).values('action')
+        actions = Action.objects.filter(pk__in=action_ids).select_subclasses()
+        return actions
+
+    @classmethod
+    def has_notifications(cls, user):
+        return len(Notification.objects.filter(recipient=user,
+                                               seen_on=None)) > 0
+
+    @classmethod
+    def mark_all_as_seen(cls, user):
+        Notification.objects.filter(recipient=user, seen_on=None).update(seen_on=datetime.now())
+
     def mark_as_seen(self):
         self.seen_on = datetime.now()
+
+    @property
+    def true_action(self):
+        if not hasattr(self, '_true_action'):
+            self._true_action = Action.objects.filter(
+                pk=self.action.pk
+            ).select_subclasses()[0]
+        return self._true_action
+
+    @property
+    def has_been_seen(self):
+        return self.seen_on is not None
 
     def __str__(self):
         return '[Notif.] pour {}{} concernant {}' \
@@ -150,8 +206,3 @@ class Notification(models.Model):
                          '' if self.seen_on is None \
                              else ' (vu le {})'.format(self.seen_on),
                          self.action)
-
-
-
-
-

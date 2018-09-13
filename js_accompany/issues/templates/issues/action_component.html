@@ -4,4 +4,7 @@
     {% include "./state_component.html" with state=action %}
 {% elif action|is_action_instance:"MessagePosted" %}
     {% include "./message_component.html" with message=action %}
+{% elif action|is_action_instance:"TagSomething" %}
+    {% include "./tag_component.html" with tagtion=action %}
+
 {% endif %}

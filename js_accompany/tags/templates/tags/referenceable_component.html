@@ -1,0 +1,16 @@
+<!-- Expecting 'referenceable' variable -->
+{% load tag_filters %}
+{% if not force_long and referenceable|prefere_short %}
+    {# Short #}
+    <a href="{{ referenceable|absolute_url }}" title="{{ referenceable|long_name }}">
+        <span class="badge badge-pill badge-secondary badge-{{ referenceable|slug }}">
+            {{ referenceable|short_name }}
+        </span>
+    </a>
+{% else %}
+    {# Long #}
+    <a href="{{ referenceable|absolute_url }}" title="{{ referenceable|short_name }}">
+        {{ referenceable|long_name }}
+    </a>
+
+{% endif %}

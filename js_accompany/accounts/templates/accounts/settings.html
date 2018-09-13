@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load tag_filters %}
+
 {% block content %}
     <h1>Settings</h1>
 
@@ -18,5 +20,28 @@
     {% for group in user.groups.all %}
         <span class="badge badge-secondary">{{ group }}</span>
     {% endfor %}
+
+    <h2>Followship</h2>
+    {% for fship in user|get_followships %}
+        {% if fship.notify %}
+            <div class="alert alert-secondary alert-dismissible fade show"
+                 role="alert">
+                    {% include 'tags/referenceable_component.html' with referenceable=fship|get_tagable force_long=True %}
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        {% endif %}
+    {% endfor %}
+
+    <h2 id="Notifications">Notifications</h2>
+    {# TODO pagination #}
+    {% for notification in user|get_notifications %}
+        {% include 'tags/notification_component.html' with action=notification %}
+        <br/>
+    {% endfor %}
+
 
 {% endblock %}

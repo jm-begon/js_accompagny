@@ -1,0 +1,71 @@
+<!-- expecting `concept` variable -->
+{% load tag_filters %}
+
+<div class="card">
+    <div class="card-body">
+        <h6 id="{{ concept.slug }}" class="card-title lead">
+            {{ concept.long_name }}
+            <a href="#{{ concept.slug }}"
+               class="icon-tag"></a>
+        </h6>
+        <hr/>
+        <!-- Other Category Class: Formations -->
+        {% for category in sticker.components %}
+            {% if category.short %}
+                <p>
+                    <span class="card-title">{{ category.name }}</span> <a
+                        href="{{ category.address }}#start_here"
+                        class="icon-tag"></a>
+                    {% for sticker_compo in category.list %}
+                        <a href="{{ category.address }}#{{ sticker_compo|id_str }}"><span
+                                class="badge badge-pill badge-secondary badge-{{ sticker_compo.name }}">{{ sticker_compo.name }}</span></a>
+                    {% endfor %}
+                </p>
+            {% else %} <!-- long -->
+                <div class="card">
+                    <div class="card-header"
+                         id="card_header_{{ sticker.model|id_str }}_{{ category.address }}">
+                        <button class="btn btn-link collapsed" type="button"
+                                data-toggle="collapse"
+                                data-target="#card_collapsable_{{ sticker.model|id_str }}_{{ category.address }}"
+                                aria-expanded="false"
+                                aria-controls="card_{{ category.address }}">
+                            <span class="icon-list"> </span>{{ category.name }}
+                        </button>
+                        {% if not category.is_raw %}
+                            <a href="{{ category.address }}#start_here"
+                               class="icon-tag"></a>
+                            {% if  category.list|length == 0 %}
+                                <span class="badge badge-danger float-right">0</span>
+                            {% else %}
+                                <span class="badge badge-success float-right">{{ category.list|length }}</span>
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                    <div id="card_collapsable_{{ sticker.model|id_str }}_{{ category.address }}"
+                         class="collapse {{ category.short|yesno:"show," }}"
+                         aria-labelledby="headingOne">
+                        <div class="card-body">
+                            {% if not category.is_raw %}
+                                <ul>
+                                    {% for sticker_compo in category.list %}
+                                        <li>
+                                            <a href="{{ category.address }}#{{ sticker_compo|id_str }}">
+                                                {{ sticker_compo.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                {% for sticker_compo in category.list %}
+                                    <pre>{{ sticker_compo }}</pre>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
