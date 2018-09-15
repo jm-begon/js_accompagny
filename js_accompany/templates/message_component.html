@@ -1,0 +1,11 @@
+{# expecting possibly: #}
+{# 'id_suffix', a string #}
+{# 'hide', a boolean (optional) #}
+{# 'alert_type' a bootstrap string for coloring (optional) #}
+
+<div class="alert {{ alert_type }} alert-dismissible fade show {{ hide|yesno:'d-none,' }}" role="alert" id="notif-alert-{{ id_suffix }}">
+    <button type="button" class="close" data-dismiss="alert"
+            aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

@@ -22,24 +22,17 @@
     {% endfor %}
 
     <h2>Followship</h2>
+    {#  TODO make collapsable: https://getbootstrap.com/docs/4.1/components/collapse/ #}
     {% for fship in user|get_followships %}
         {% if fship.notify %}
-            <div class="alert alert-secondary alert-dismissible fade show"
-                 role="alert">
-                    {% include 'tags/referenceable_component.html' with referenceable=fship|get_tagable force_long=True %}
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
+            {% include './cancellable_followship_component.html' with followship=fship %}
         {% endif %}
     {% endfor %}
 
     <h2 id="Notifications">Notifications</h2>
-    {# TODO pagination #}
+    {# TODO pagination or carousel https://getbootstrap.com/docs/4.1/components/carousel/ #}
     {% for notification in user|get_notifications %}
-        {% include 'tags/notification_component.html' with action=notification %}
+        {% include './notification_component.html' with action=notification %}
         <br/>
     {% endfor %}
 

@@ -25,11 +25,13 @@
         {% for sticker in view.list %}
             <div class="card"><div class="card-body">
                 <div>
+                    <span class="float-right">
+                        {% include "tags/follow_button.html" with tagable=sticker.model %}
+                    </span>
                     <h6 id="{{ sticker.model.slug }}" class="card-title lead">
                         {{ sticker.name }}
                         <a href="#{{ sticker.model.slug }}" class="icon-tag"></a>
                     </h6>
-                    <form
                 </div>
                 <hr/>
                 <!-- Other Category Class: Formations -->

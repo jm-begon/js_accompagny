@@ -6,6 +6,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.db import transaction
+from django.contrib import messages
+
 
 from tags.models import Tagable
 from .models import Issue, MessagePosted
@@ -65,9 +67,9 @@ def add_message(request, issue_pk):
         if content is None or len(content) == 0:
             raise ValueError('Le message ne peut pas être vide')
     except (KeyError, ValueError) as err:
+        messages.error(request, str(err))
         return render(request, "issues/issue_detail.html",
-                      {'object': issue, 'error_message': str(err)})
-        # TODO message
+                      {'issue': issue})
 
     MessagePosted.new_message(request.user, tag=issue, content=content)
 
@@ -77,14 +79,13 @@ def add_message(request, issue_pk):
 def add_tag(request, issue_pk):
     issue = get_object_or_404(Issue, pk=issue_pk)
     try:
-        print('POST', request.POST)
         tag_pk = request.POST['tag-selected']
         if tag_pk is None:
             raise ValueError('Aucun tag selectionné')
     except (KeyError, ValueError) as err:
+        messages.error(request, str(err))
         return render(request, "issues/issue_detail.html",
-                      {'object': issue, 'error_message': str(err)})
-        # TODO message
+                      {'issue': issue})
 
     tag_inst = Tagable.objects.select_subclasses().get(pk=tag_pk)
     tag_inst.create_tag(request.user, Issue.objects.get(pk=issue_pk))

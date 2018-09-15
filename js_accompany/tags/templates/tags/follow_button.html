@@ -1,0 +1,26 @@
+{# expecting 'tagable' variable #}
+{% load tag_filters %}
+
+<a id="button-follow-{{ tagable.pk }}" class="icon-bell" title="Suivre {{ tagable|prefered_name }}" href={% url "tags:api-add-followship" tagable.pk %}></a>
+
+<script>
+    $('#button-follow-{{ tagable.pk }}').on('click', function (event) {
+       event.preventDefault();
+       $.ajax({
+           url: $(this).attr('href'),
+           success: function(data, textStatus, jqXHR) {
+               var notif = $('#notif-alert-reference').clone().prop('id',
+                   'notif-alert-follow-{{ tagable.pk }}');
+               notif.prepend(data.message);
+               if (jqXHR.status==200){
+                    notif.addClass("alert-success");
+                } else {
+                    notif.addClass("alert-danger");
+                }
+                $("#messages-zone").prepend(notif);
+                notif.removeClass("d-none");
+           }
+       });
+
+    });
+</script>

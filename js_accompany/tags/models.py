@@ -36,7 +36,7 @@ class Tagable(Referenceable):
 
     def register_follower(self, follower):
         """"re-entrant friendly"""
-        Followhsip.objects.get_or_create(follower=follower, tagable=self)
+        Followship.objects.get_or_create(follower=follower, tagable=self)
 
     def get_actions(self, refresh=False):
         if refresh or not hasattr(self, '_actions') or self._actions is None:
@@ -66,16 +66,40 @@ class Tagable(Referenceable):
         return a1, a2
 
 
-class Followhsip(models.Model):
+class Followship(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE)
     tagable = models.ForeignKey(Tagable, on_delete=models.CASCADE)
     notify = models.BooleanField(default=True)
+
+    @classmethod
+    @transaction.atomic
+    def add_or_renew(cls, user, tagable):
+        if isinstance(tagable, Tagable):
+            followship, created = Followship.objects.get_or_create(
+                follower=user,
+                tagable=tagable)
+        else:
+            # tagable is actually the key
+            tagable_pk = tagable
+            followship, created = Followship.objects.get_or_create(
+                follower=user,
+                tagable_id=tagable_pk)
+        if not created:
+            followship.notify = True  # Notify is true by default
+            followship.save()
 
     def __str__(self):
         return '[Follow {}] {} {} {}'.format(self.pk, self.follower.username,
                                              'suit' if self.notify else
                                              'ne suit pas',
                                              self.tagable.short_name)
+
+    def __repr__(self):
+        return "{cls}(follower={follower}, tagable={tagable}, notify={notify})" \
+               "".format(cls=self.__class__.__name__,
+                         follower=repr(self.follower),
+                         tagable=repr(self.tagable),
+                         notify=repr(self.notify))
 
 
 class Action(models.Model):
@@ -116,7 +140,7 @@ class Action(models.Model):
              update_fields=None):
         super().save(force_insert=force_insert, force_update=force_update,
                      using=using, update_fields=update_fields)
-        for follow_rel in Followhsip.objects.filter(tagable=self.tag,
+        for follow_rel in Followship.objects.filter(tagable=self.tag,
                                                     notify=True):
             follower = follow_rel.follower
             if follower.pk != self.owner.pk:
@@ -134,7 +158,7 @@ class TagCreation(Action):
 
 class TagSomething(Action):
     """This represents a tageable being tagged"""
-    tag_about = models.ForeignKey(Referenceable, on_delete=models.CASCADE)
+    tag_about = models.ForeignKey(Tagable, on_delete=models.CASCADE)
 
     @property
     def get_tag_about(self):
@@ -142,7 +166,9 @@ class TagSomething(Action):
 
     @property
     def notif_message(self):
-        return "Taggué"
+        tag = self.get_tag_about
+        msg = tag.short_name if tag.prefere_short else tag.long_name
+        return "Creation d'un tag: {}".format(msg)
 
     def __str__(self):
         return super().__str__() + " --> {}".format(self.tag_about)

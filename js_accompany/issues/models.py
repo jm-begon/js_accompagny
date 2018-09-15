@@ -34,7 +34,6 @@ class Issue(Tagable):
 
     @property
     def long_name(self):
-        print(self.__class__.__name__, self.title)
         return self.title
 
     @property
@@ -74,8 +73,12 @@ class Issue(Tagable):
 
     def get_remaining_tags(self):
         # TODO do better
-        already_pks = TagSomething.objects.filter(tag_about=self).values('pk')
-        return Tagable.objects.all().exclude(pk__in=already_pks).select_subclasses()
+        already = TagSomething.objects.filter(tag=self).values('tag_about')
+        already_pks = set()
+        for dict in already:
+            already_pks.update(dict.values())
+        res = Tagable.objects.all().exclude(pk__in=already_pks).select_subclasses()
+        return res
 
 
 class StateChanged(Action):

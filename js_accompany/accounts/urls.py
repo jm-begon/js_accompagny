@@ -14,6 +14,6 @@ urlpatterns = [
 
     re_path(r'^settings/$', settings, name='settings'),
     # re_path(r'^settings/(?P<slug>[\w-]+)/$', settings, name='settings'),
-    path('notifications/', notifications, name='notifications')
+    path('notifications/', notifications, name='notifications'),
 ]
 

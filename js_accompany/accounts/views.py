@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import views as auth_views
 from django.template.context_processors import csrf
@@ -23,6 +23,7 @@ def signup(request):
     if request.method == 'POST':
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
+            # Notify admin
             user = form.save()
             login(request, user)
             return redirect('accounts:success_signup')
@@ -56,3 +57,4 @@ def notifications(request):
     return HttpResponseRedirect(
         '{}#{}'.format(reverse('accounts:settings'), 'Notifications')
     )
+

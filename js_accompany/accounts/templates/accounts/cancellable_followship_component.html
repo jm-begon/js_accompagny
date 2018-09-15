@@ -1,0 +1,36 @@
+{% load tag_filters %}
+
+{% with followship|get_tagable as referenceable %}
+
+    <div class="alert alert-secondary alert-dismissible fade show"
+         role="alert" id="remove-followship-{{ followship.pk }}"
+         target="{% url "tags:api-remove-followship" followship.pk %}">
+        {% include 'tags/referenceable_component.html' with referenceable=referenceable force_long=True %}
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <script>
+            $('#remove-followship-{{ followship.pk }}').on('close.bs.alert', function() {
+                $.ajax({
+                    url: $(this).attr("target"),
+                    success: function(data, textStatus, jqXHR){
+                        var notif = $('#notif-alert-reference'
+                        ).clone().prop('id',
+                            'notif-alert-unfollow-{{ referenceable.slug }}');
+                        notif.prepend(data.message);
+                        if (jqXHR.status==200){
+                            notif.addClass("alert-success");
+                        } else {
+                            notif.addClass("alert-danger");
+                        }
+                        $("#messages-zone").prepend(notif);
+                        notif.removeClass("d-none");
+                    }
+                });
+
+            });
+        </script>
+    </div>
+{% endwith %}
+

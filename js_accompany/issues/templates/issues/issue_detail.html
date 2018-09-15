@@ -1,8 +1,14 @@
+{# Expecting 'issue' variable #}
 {% extends 'base.html' %}
 {% load issue_filters %}
 {% block content %}
 
-    <h1>{{ issue.title }}</h1>
+    <h1>
+        {{ issue.title }}
+    </h1>
+    <div class="float-right">
+        {% include "tags/follow_button.html" with tagable=issue %}
+    </div><br/>
     {# Close issue #}
     {% for action in issue|actions %}
         {% include "./action_component.html" with action=action %}
